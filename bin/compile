@@ -189,11 +189,11 @@ fi
 # Now on to bundling. Don't put the bundle in $APP_CHECKOUT_DIR during
 # bundling, or it will recurse, trying to bundle up its own bundling.
 
-echo "-----> Building Meteor app with ROOT_URL: $ROOT_URL"
+echo "-----> Building Meteor app with ROOT_URL: $ROOT_URL and PORT: $PORT"
 BUNDLE_DEST=`mktemp -d "$BUILDPACK_DIR/build-XXXX"`
 
 # The actual invocation of `meteor build`!
-METEOR build $BUILD_OPTIONS --server $ROOT_URL $SERVER_ONLY_FLAG --directory $BUNDLE_DEST
+METEOR build $BUILD_OPTIONS --server $ROOT_URL $SERVER_ONLY_FLAG --directory $BUNDLE_DEST --port $PORT
 
 echo "-----> Moving built slug to $COMPILE_DIR/app"
 mv $BUNDLE_DEST/bundle "$COMPILE_DIR/app"
